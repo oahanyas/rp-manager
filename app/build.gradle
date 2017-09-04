@@ -18,6 +18,7 @@ repositories {
 android {
     compileSdkVersion 25
     buildToolsVersion "26.0.1"
+
     defaultConfig {
         applicationId "com.loa.rp_manager"
         minSdkVersion 9
@@ -25,10 +26,27 @@ android {
         versionCode 1
         versionName "1.0.0"
     }
+
     buildTypes {
-        release {
+        debug {
+            debuggable true
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            versionNameSuffix "-debug"
+        }
+
+        release {
+            debuggable false
+            minifyEnabled true
+        }
+    }
+
+    productFlavors {
+        master {
+            //applicationId "com.loa.rp_manager.master"
+        }
+
+        player {
+            //applicationId "com.loa.rp_manager.player"
         }
     }
 }
@@ -42,6 +60,7 @@ dependencies {
 }
 
 dependencies {
+    compile "org.java-websocket:Java-WebSocket:1.3.0"
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
