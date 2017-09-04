@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
@@ -16,9 +17,6 @@ import org.androidannotations.annotations.ViewById;
 @EActivity(R.layout.activity_main)
 public abstract class MainActivityAbstract extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-    @ViewById(R.id.fragment_manager)
-    protected Fragment fragment;
 
     @AfterViews
     protected void afterViews(){

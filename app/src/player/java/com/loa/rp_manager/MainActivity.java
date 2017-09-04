@@ -7,6 +7,8 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 
+import com.loa.rp_manager.fragment.StatsPlayer_;
+
 import org.androidannotations.annotations.EActivity;
 
 @EActivity(R.layout.activity_main)
@@ -23,6 +25,7 @@ public class MainActivity extends MainActivityAbstract {
 
         Fragment newFragment = null;
         if (id == R.id.menu_stats) {
+            newFragment = new StatsPlayer_();
         } else if (id == R.id.menu_equipment) {
         } else if (id == R.id.menu_inventory) {
         } else if (id == R.id.menu_battle) {
