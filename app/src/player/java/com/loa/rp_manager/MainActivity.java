@@ -24,11 +24,16 @@ public class MainActivity extends MainActivityAbstract {
         FragmentTransaction ft = fm.beginTransaction();
 
         Fragment newFragment = null;
-        if (id == R.id.menu_stats) {
+        if (id == R.id.menu_player_information) {
+
+        } else if (id == R.id.menu_player_stats) {
             newFragment = new StatsPlayer_();
         } else if (id == R.id.menu_equipment) {
+
         } else if (id == R.id.menu_inventory) {
+
         } else if (id == R.id.menu_battle) {
+
         }
 
         ft.replace(R.id.fragment_manager, newFragment, newFragment.getClass().getName());

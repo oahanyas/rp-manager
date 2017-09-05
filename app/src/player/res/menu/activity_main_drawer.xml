@@ -4,9 +4,17 @@
     <item android:title="Personnage">
         <menu>
             <item
-                android:id="@+id/menu_stats"
+                android:id="@+id/menu_player_information"
+                android:icon="@drawable/ic_account_circle"
+                android:title="Information" />
+            <item
+                android:id="@+id/menu_player_stats"
                 android:icon="@drawable/ic_account_circle"
                 android:title="Stats" />
+            <item
+                android:id="@+id/menu_player_competence"
+                android:icon="@drawable/ic_account_circle"
+                android:title="Competence" />
             <item
                 android:id="@+id/menu_equipment"
                 android:icon="@drawable/ic_account_circle"
