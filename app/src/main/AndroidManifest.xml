@@ -10,5 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="eaf876e7776b1be07025954e0d752da8dbec8a9b" />
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

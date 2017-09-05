@@ -50,7 +50,7 @@ public class StatsPlayer extends Fragment {
             TextView description = (TextView) addStat.findViewById(R.id.ll_stats_ligne_description);
             description.setText(key + " : ");
 
-            ImageView hint = (ImageView) getActivity().findViewById(R.id.ll_stats_ligne_hint);
+            ImageView hint = (ImageView) addStat.findViewById(R.id.ll_stats_ligne_hint);
             hint.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
