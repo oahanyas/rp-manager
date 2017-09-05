@@ -1,7 +1,11 @@
 package com.loa.rp_manager.fragment;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +29,15 @@ public class StatsPlayer extends Fragment {
     @ViewById(R.id.fragment_player_stats)
     protected LinearLayout stats;
 
+    private LayoutInflater mLayoutInflater;
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        mLayoutInflater = inflater;
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
     @AfterViews
     protected void afterView() {
         Map<String, String> statsMap = Utils.getHashMapResource(R.xml.stats);
@@ -33,7 +46,7 @@ public class StatsPlayer extends Fragment {
             String key = entry.getKey();
             final String value = entry.getValue();
 
-            View addStat = getActivity().findViewById(R.id.ll_stats_ligne);
+            View addStat = mLayoutInflater.inflate(R.layout.ll_stat_ligne, null);
             TextView description = (TextView) addStat.findViewById(R.id.ll_stats_ligne_description);
             description.setText(key + " : ");
 
