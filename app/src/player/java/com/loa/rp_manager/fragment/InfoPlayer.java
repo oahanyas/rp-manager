@@ -51,30 +51,33 @@ public class InfoPlayer extends Fragment {
     @AfterViews
     protected void afterView(){
         Bundle bundle = this.getArguments();
-        playerDb = (PlayerDb) bundle.getSerializable("player");
 
-        if(playerDb != null) {
-            name.setText(playerDb.getName());
-            name.setEnabled(false);
+        if(bundle != null){
+            playerDb = (PlayerDb) bundle.getSerializable("player");
 
-            origin.setText(playerDb.getOrigin());
-            origin.setEnabled(false);
+            if(playerDb != null) {
+                name.setText(playerDb.getName());
+                name.setEnabled(false);
 
-            race.setText(playerDb.getRace());
-            race.setEnabled(false);
+                origin.setText(playerDb.getOrigin());
+                origin.setEnabled(false);
 
-            size.setText(String.valueOf(playerDb.getSize()));
-            size.setEnabled(false);
+                race.setText(playerDb.getRace());
+                race.setEnabled(false);
 
-            weight.setText(String.valueOf(playerDb.getWeight()));
-            weight.setEnabled(false);
+                size.setText(String.valueOf(playerDb.getSize()));
+                size.setEnabled(false);
 
-            if(playerDb.getSexe()){
-                sexeMan.setChecked(true);
-            } else {
-                sexeWoman.setChecked(true);
+                weight.setText(String.valueOf(playerDb.getWeight()));
+                weight.setEnabled(false);
+
+                if(playerDb.getSexe()){
+                    sexeMan.setChecked(true);
+                } else {
+                    sexeWoman.setChecked(true);
+                }
+                sexe.setEnabled(false);
             }
-            sexe.setEnabled(false);
         }
     }
 
