@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * Created by Hanyas on 05/09/2017.
  */
-public class Utils {
+abstract class UtilsAbsract {
 
     public static Map<String, String> getHashMapResource(int hashMapResId) {
         Map<String, String> map = null;

@@ -22,6 +22,10 @@ public class PlayerDb {
     protected String race;
 
     public static final String ORIGIN = "ORIGIN";
-    @DatabaseField(columnName = ORIGIN, canBeNull = true)
+    @DatabaseField(columnName = ORIGIN)
     protected String origin;
+
+    public static final String SEXE = "SEXE";
+    @DatabaseField(columnName = SEXE)
+    protected Boolean sexe;
 }
