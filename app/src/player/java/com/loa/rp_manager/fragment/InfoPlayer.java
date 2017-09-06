@@ -62,10 +62,10 @@ public class InfoPlayer extends Fragment {
             race.setText(player.getRace());
             race.setEnabled(false);
 
-            size.setText(player.getSize());
+            size.setText(String.valueOf(player.getSize()));
             size.setEnabled(false);
 
-            weight.setText(player.getWeight());
+            weight.setText(String.valueOf(player.getWeight()));
             weight.setEnabled(false);
 
             if(player.getSexe()){
