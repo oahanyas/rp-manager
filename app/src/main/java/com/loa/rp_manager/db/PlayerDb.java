@@ -47,7 +47,7 @@ public class PlayerDb {
 
         PlayerHelper absHelper = (PlayerHelper) helper;
         @SuppressWarnings("unchecked")
-        Dao<PlayerDb, String> dao = absHelper.getDao(getClass());
+        Dao<PlayerDb, String> dao = (Dao<PlayerDb, String>) absHelper.getDao(getClass());
         dao.createOrUpdate(this);
     }
 
