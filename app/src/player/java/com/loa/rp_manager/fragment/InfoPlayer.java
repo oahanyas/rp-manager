@@ -46,29 +46,30 @@ public class InfoPlayer extends Fragment {
     @ViewById(R.id.fragment_player_information_weight)
     protected EditText weight;
 
+    private PlayerDb playerDb;
+
     @AfterViews
     protected void afterView(){
         Bundle bundle = this.getArguments();
+        playerDb = (PlayerDb) bundle.getSerializable("player");
 
-        PlayerDb player = (PlayerDb) bundle.getSerializable("player");
-
-        if(player != null) {
-            name.setText(player.getName());
+        if(playerDb != null) {
+            name.setText(playerDb.getName());
             name.setEnabled(false);
 
-            origin.setText(player.getOrigin());
+            origin.setText(playerDb.getOrigin());
             origin.setEnabled(false);
 
-            race.setText(player.getRace());
+            race.setText(playerDb.getRace());
             race.setEnabled(false);
 
-            size.setText(String.valueOf(player.getSize()));
+            size.setText(String.valueOf(playerDb.getSize()));
             size.setEnabled(false);
 
-            weight.setText(String.valueOf(player.getWeight()));
+            weight.setText(String.valueOf(playerDb.getWeight()));
             weight.setEnabled(false);
 
-            if(player.getSexe()){
+            if(playerDb.getSexe()){
                 sexeMan.setChecked(true);
             } else {
                 sexeWoman.setChecked(true);
@@ -79,7 +80,9 @@ public class InfoPlayer extends Fragment {
 
     @Click(R.id.fragment_player_information_valider)
     protected void valider(){
-        PlayerDb playerDb = new PlayerDb();
+        if(playerDb == null) {
+            playerDb = new PlayerDb();
+        }
 
         playerDb.setName(name.getText().toString());
         playerDb.setRace(race.getText().toString());
