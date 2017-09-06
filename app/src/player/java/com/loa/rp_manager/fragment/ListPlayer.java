@@ -10,6 +10,7 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,10 +19,10 @@ import com.loa.rp_manager.db.PlayerDb;
 import com.loa.rp_manager.utils.Utils;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
-import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
@@ -78,6 +79,7 @@ public class ListPlayer extends Fragment {
 
                     newFragment.setArguments(bundle);
 
+                    ft.addToBackStack(null);
                     ft.replace(R.id.fragment_manager, newFragment, newFragment.getClass().getName());
                     ft.commit();
                 }
@@ -85,5 +87,15 @@ public class ListPlayer extends Fragment {
 
             tableLayout.addView(addPlayer);
         }
+    }
+
+    @Click(R.id.fragment_player_list_button)
+    protected void newPlayer(){
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        Fragment newFragment = new InfoPlayer_();
+        ft.addToBackStack(null);
+        ft.replace(R.id.fragment_manager, newFragment, newFragment.getClass().getName());
+        ft.commit();
     }
 }

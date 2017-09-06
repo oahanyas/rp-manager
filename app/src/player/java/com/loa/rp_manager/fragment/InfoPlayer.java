@@ -1,5 +1,6 @@
 package com.loa.rp_manager.fragment;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -47,7 +48,33 @@ public class InfoPlayer extends Fragment {
 
     @AfterViews
     protected void afterView(){
+        Bundle bundle = this.getArguments();
 
+        PlayerDb player = (PlayerDb) bundle.getSerializable("player");
+
+        if(player != null) {
+            name.setText(player.getName());
+            name.setEnabled(false);
+
+            origin.setText(player.getOrigin());
+            origin.setEnabled(false);
+
+            race.setText(player.getRace());
+            race.setEnabled(false);
+
+            size.setText(player.getSize());
+            size.setEnabled(false);
+
+            weight.setText(player.getWeight());
+            weight.setEnabled(false);
+
+            if(player.getSexe()){
+                sexeMan.setChecked(true);
+            } else {
+                sexeWoman.setChecked(true);
+            }
+            sexe.setEnabled(false);
+        }
     }
 
     @Click(R.id.fragment_player_information_valider)
