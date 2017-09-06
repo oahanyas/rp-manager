@@ -54,7 +54,7 @@ public class StatsPlayer extends Fragment {
             hint.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    Toast.makeText(v.getContext(), value, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(v.getContext(), value, Toast.LENGTH_LONG).show();
                     return true;
                 }
             });

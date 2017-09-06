@@ -1,6 +1,5 @@
 package com.loa.rp_manager.utils;
 
-import android.content.Context;
 import android.content.res.XmlResourceParser;
 import android.util.Log;
 
