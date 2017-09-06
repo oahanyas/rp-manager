@@ -19,7 +19,7 @@ public class PlayerHelper extends OrmLiteSqliteOpenHelper {
      * Suggested Copy/Paste code. Everything from here to the done block.
      ************************************************/
     private static final String DATABASE_NAME = "player.db";
-    private static final int DATABASE_VERSION = 0;
+    private static final int DATABASE_VERSION = 1;
     private Context context;
 
     public PlayerHelper(Context context) {

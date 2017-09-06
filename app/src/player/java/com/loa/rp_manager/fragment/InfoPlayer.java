@@ -55,10 +55,20 @@ public class InfoPlayer extends Fragment {
         PlayerDb playerDb = new PlayerDb();
 
         playerDb.setName(name.getText().toString());
-        playerDb.setOrigin(origin.getText().toString());
         playerDb.setRace(race.getText().toString());
-        playerDb.setSize(Integer.valueOf(size.getText().toString()));
-        playerDb.setWeight(Integer.valueOf(weight.getText().toString()));
+        playerDb.setOrigin(origin.getText().toString());
+
+        if(size.getText().toString().equals("")){
+            playerDb.setSize(0);
+        } else {
+            playerDb.setSize(Integer.valueOf(size.getText().toString()));
+        }
+
+        if(weight.getText().toString().equals("")){
+            playerDb.setWeight(0);
+        } else {
+            playerDb.setWeight(Integer.valueOf(weight.getText().toString()));
+        }
 
         if(sexeMan.isChecked()){
             playerDb.setSexe(true);
