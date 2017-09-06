@@ -20,11 +20,9 @@ public class PlayerHelper extends OrmLiteSqliteOpenHelper {
      ************************************************/
     private static final String DATABASE_NAME = "player.db";
     private static final int DATABASE_VERSION = 1;
-    private Context context;
 
     public PlayerHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        this.context = context;
     }
 
     /************************************************
@@ -41,7 +39,11 @@ public class PlayerHelper extends OrmLiteSqliteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqliteDatabase, ConnectionSource connectionSource, int oldVer, int newVer) {
-
+        try {
+            TableUtils.dropTable(connectionSource, PlayerDb.class, true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

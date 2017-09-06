@@ -78,6 +78,7 @@ public class InfoPlayer extends Fragment {
 
         try {
             playerDb.save();
+            getFragmentManager().popBackStack();
         } catch (SQLException e) {
             e.printStackTrace();
         }

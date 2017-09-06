@@ -9,6 +9,7 @@ import android.view.MenuItem;
 
 import com.loa.rp_manager.db.PlayerDb;
 import com.loa.rp_manager.fragment.InfoPlayer_;
+import com.loa.rp_manager.fragment.ListPlayer_;
 import com.loa.rp_manager.fragment.StatsPlayer_;
 import com.loa.rp_manager.utils.Utils;
 
@@ -23,6 +24,11 @@ public class MainActivity extends MainActivityAbstract {
     @Override
     protected void afterViews() {
         super.afterViews();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         List<PlayerDb> players = null;
         try {
@@ -33,12 +39,14 @@ public class MainActivity extends MainActivityAbstract {
 
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        Fragment newFragment = null;
+        Fragment newFragment;
 
         if(players == null || players.size() == 0){
             newFragment = new InfoPlayer_();
+            ft.addToBackStack(null);
         } else {
-
+            newFragment = new ListPlayer_();
+            ft.addToBackStack(null);
         }
 
         ft.replace(R.id.fragment_manager, newFragment, newFragment.getClass().getName());

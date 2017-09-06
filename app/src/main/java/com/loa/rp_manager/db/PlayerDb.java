@@ -6,21 +6,26 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 import com.loa.rp_manager.utils.Utils;
 
+import java.io.Serializable;
 import java.sql.SQLException;
 
 /**
  * Created by Hanyas on 06/09/2017.
  */
 @DatabaseTable(tableName = "player")
-public class PlayerDb {
+public class PlayerDb implements Serializable {
 
-    public static final String ID = "id";
+    public static final String ID = "ID";
     @DatabaseField(columnName = ID, id = true)
     protected Integer id;
 
     public static final String NAME = "NAME";
     @DatabaseField(columnName = NAME, canBeNull = false)
     protected String name;
+
+    public static final String LEVEL = "LEVEL";
+    @DatabaseField(columnName = LEVEL, canBeNull = false)
+    protected Integer level = 0;
 
     public static final String RACE = "RACE";
     @DatabaseField(columnName = RACE, canBeNull = false)
@@ -105,5 +110,13 @@ public class PlayerDb {
 
     public void setWeight(Integer weight) {
         this.weight = weight;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 }
