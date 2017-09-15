@@ -31,7 +31,7 @@ public class PlayerHelper extends OrmLiteSqliteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqliteDatabase, ConnectionSource connectionSource) {
         try {
-            TableUtils.createTable(connectionSource, PlayerDb.class);
+            TableUtils.dropTable(connectionSource, PlayerDb.class, true);
         } catch (SQLException e) {
             e.printStackTrace();
         }
