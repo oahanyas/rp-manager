@@ -15,37 +15,41 @@ import java.sql.SQLException;
 @DatabaseTable(tableName = "player")
 public class PlayerDb implements Serializable {
 
-    public static final String ID = "ID";
+    public static final String ID = "id";
     @DatabaseField(columnName = ID, id = true)
     protected Integer id;
 
-    public static final String NAME = "NAME";
+    public static final String NAME = "name";
     @DatabaseField(columnName = NAME, canBeNull = false)
     protected String name;
 
-    public static final String LEVEL = "LEVEL";
-    @DatabaseField(columnName = LEVEL, canBeNull = false)
-    protected Integer level = 0;
+    public static final String EXP = "exp";
+    @DatabaseField(columnName = EXP, canBeNull = false)
+    protected Integer exp = 0;
 
-    public static final String RACE = "RACE";
+    public static final String LVL = "lvl";
+    @DatabaseField(columnName = LVL, canBeNull = false)
+    protected Integer lvl = 1;
+
+    public static final String RACE = "race";
     @DatabaseField(columnName = RACE, canBeNull = false)
     protected String race;
 
-    public static final String ORIGIN = "ORIGIN";
+    public static final String ORIGIN = "origin";
     @DatabaseField(columnName = ORIGIN)
     protected String origin;
 
-    public static final String SEXE = "SEXE";
+    public static final String SEXE = "sexe";
     @DatabaseField(columnName = SEXE)
     protected Boolean sexe;
 
-    public static final String SIZE = "SIZE";
+    public static final String SIZE = "size";
     @DatabaseField(columnName = SIZE)
-    protected Integer size;
+    protected Integer size = 0;
 
-    public static final String WEIGHT = "WEIGHT";
+    public static final String WEIGHT = "weight";
     @DatabaseField(columnName = WEIGHT)
-    protected Integer weight;
+    protected Integer weight = 0;
 
     public void save() throws SQLException {
         OrmLiteSqliteOpenHelper helper = Utils.getHelper();
@@ -70,6 +74,22 @@ public class PlayerDb implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getExp() {
+        return exp;
+    }
+
+    public void setExp(Integer exp) {
+        this.exp = exp;
+    }
+
+    public Integer getLvl() {
+        return lvl;
+    }
+
+    public void setLvl(Integer lvl) {
+        this.lvl = lvl;
     }
 
     public String getRace() {
@@ -110,13 +130,5 @@ public class PlayerDb implements Serializable {
 
     public void setWeight(Integer weight) {
         this.weight = weight;
-    }
-
-    public Integer getLevel() {
-        return level;
-    }
-
-    public void setLevel(Integer level) {
-        this.level = level;
     }
 }

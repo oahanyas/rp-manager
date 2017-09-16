@@ -10,7 +10,6 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,7 +23,6 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
 import java.sql.SQLException;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -58,21 +56,18 @@ public class ListPlayer extends Fragment {
             e.printStackTrace();
         }
 
-        Iterator<PlayerDb> iterator = players.iterator();
-        while (iterator.hasNext()){
-            final PlayerDb player = iterator.next();
-
+        for (final PlayerDb player : players) {
             View addPlayer = mLayoutInflater.inflate(R.layout.row_player_list, null);
             addPlayer.setLayoutParams(new ViewGroup.LayoutParams(size.x, ViewGroup.LayoutParams.WRAP_CONTENT));
 
             ((TextView) addPlayer.findViewById(R.id.row_player_list_name)).setText(player.getName());
-            ((TextView) addPlayer.findViewById(R.id.row_player_list_level)).setText(String.valueOf(player.getLevel()));
+            ((TextView) addPlayer.findViewById(R.id.row_player_list_level)).setText(String.valueOf(player.getLvl()));
             addPlayer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     FragmentManager fm = getFragmentManager();
                     FragmentTransaction ft = fm.beginTransaction();
-                    Fragment newFragment = new InfoPlayer_();
+                    Fragment newFragment = new StatsPlayer_();
 
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("player", player);
@@ -85,7 +80,10 @@ public class ListPlayer extends Fragment {
                 }
             });
 
-            tableLayout.addView(addPlayer);
+            tableLayout.addView(addPlayer,
+                    new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                            ViewGroup.LayoutParams.MATCH_PARENT));
+
         }
     }
 
@@ -93,7 +91,7 @@ public class ListPlayer extends Fragment {
     protected void newPlayer(){
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        Fragment newFragment = new InfoPlayer_();
+        Fragment newFragment = new CreatePlayer_();
         ft.addToBackStack(null);
         ft.replace(R.id.fragment_manager, newFragment, newFragment.getClass().getName());
         ft.commit();

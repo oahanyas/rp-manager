@@ -2,6 +2,8 @@ package com.loa.rp_manager.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -20,7 +22,7 @@ import java.sql.SQLException;
  * Created by Hanyas on 06/09/2017.
  */
 @EFragment(R.layout.fragment_player_information)
-public class InfoPlayer extends Fragment {
+public class CreatePlayer extends Fragment {
 
     @ViewById(R.id.fragment_player_information_name)
     protected EditText name;
@@ -40,18 +42,13 @@ public class InfoPlayer extends Fragment {
     @ViewById(R.id.fragment_player_information_sexe_woman)
     protected RadioButton sexeWoman;
 
-    @ViewById(R.id.fragment_player_information_size)
-    protected EditText size;
-
-    @ViewById(R.id.fragment_player_information_weight)
-    protected EditText weight;
-
     private PlayerDb playerDb;
 
     @AfterViews
     protected void afterView(){
         Bundle bundle = this.getArguments();
 
+        sexeMan.setChecked(true);
         if(bundle != null){
             playerDb = (PlayerDb) bundle.getSerializable("player");
 
@@ -65,18 +62,14 @@ public class InfoPlayer extends Fragment {
                 race.setText(playerDb.getRace());
                 race.setEnabled(false);
 
-                size.setText(String.valueOf(playerDb.getSize()));
-                size.setEnabled(false);
-
-                weight.setText(String.valueOf(playerDb.getWeight()));
-                weight.setEnabled(false);
-
                 if(playerDb.getSexe()){
                     sexeMan.setChecked(true);
                 } else {
                     sexeWoman.setChecked(true);
                 }
                 sexe.setEnabled(false);
+                sexeMan.setEnabled(false);
+                sexeWoman.setEnabled(false);
             }
         }
     }
@@ -91,18 +84,6 @@ public class InfoPlayer extends Fragment {
         playerDb.setRace(race.getText().toString());
         playerDb.setOrigin(origin.getText().toString());
 
-        if(size.getText().toString().equals("")){
-            playerDb.setSize(0);
-        } else {
-            playerDb.setSize(Integer.valueOf(size.getText().toString()));
-        }
-
-        if(weight.getText().toString().equals("")){
-            playerDb.setWeight(0);
-        } else {
-            playerDb.setWeight(Integer.valueOf(weight.getText().toString()));
-        }
-
         if(sexeMan.isChecked()){
             playerDb.setSexe(true);
         } else {
@@ -111,7 +92,12 @@ public class InfoPlayer extends Fragment {
 
         try {
             playerDb.save();
-            getFragmentManager().popBackStack();
+
+            FragmentManager fm = getFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            ListPlayer_ newFragment = new ListPlayer_();
+            ft.replace(R.id.fragment_manager, newFragment, newFragment.getClass().getName());
+            ft.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }

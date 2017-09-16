@@ -8,7 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 
 import com.loa.rp_manager.db.PlayerDb;
-import com.loa.rp_manager.fragment.InfoPlayer_;
+import com.loa.rp_manager.fragment.CreatePlayer_;
 import com.loa.rp_manager.fragment.ListPlayer_;
 import com.loa.rp_manager.fragment.StatsPlayer_;
 import com.loa.rp_manager.utils.Utils;
@@ -42,7 +42,7 @@ public class MainActivity extends MainActivityAbstract {
         Fragment newFragment;
 
         if(players == null || players.size() == 0){
-            newFragment = new InfoPlayer_();
+            newFragment = new CreatePlayer_();
             ft.addToBackStack(null);
         } else {
             newFragment = new ListPlayer_();

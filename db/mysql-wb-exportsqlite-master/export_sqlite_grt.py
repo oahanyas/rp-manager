@@ -304,7 +304,7 @@ def exportSQLite(cat):
                     raise ExportSQLiteError(
                             'Error', 'Unrecognized column in inserts')
 
-            out.write('INSERT INTO %s(' % dq(tbl.name))
+            out.write('INSERT OR REPLACE INTO %s(' % dq(tbl.name))
             for i in range(last_column + 1):
                 if i > 0:
                     out.write(',')
