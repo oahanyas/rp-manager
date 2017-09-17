@@ -13,7 +13,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.ForeignCollection;
+import com.j256.ormlite.stmt.QueryBuilder;
 import com.loa.rp_manager.MainActivity;
 import com.loa.rp_manager.R;
 import com.loa.rp_manager.db.PlayerDb;
@@ -87,8 +89,8 @@ public class StatsPlayer extends Fragment {
 
     private void insertStats(String type, final String desc, Integer value) {
         View addStat = mLayoutInflater.inflate(R.layout.ll_stat_ligne, null);
-        final TextView description = (TextView) addStat.findViewById(R.id.ll_stats_ligne_description);
-        description.setText(type + " : ");
+        TextView type = (TextView) addStat.findViewById(R.id.ll_stats_ligne_type);
+        type.setText(type + " : ");
 
         ImageView hint = (ImageView) addStat.findViewById(R.id.ll_stats_ligne_hint);
         hint.setOnLongClickListener(new View.OnLongClickListener() {
@@ -127,9 +129,23 @@ public class StatsPlayer extends Fragment {
         for (int i = 0; i < childCount; i++) {
             PlayerHasStatsDb playerHasStatsDb = new PlayerHasStatsDb();
 
-            View v = stats.getChildAt(i);
+            View statsLigne = stats.getChildAt(i);
+            TextView type = (TextView) statsLigne.findViewById(R.id.ll_stats_ligne_type);
 
             try {
+                Dao<StatsDb, ?> dao = Utils.getHelper().getDao(StatsDb.class);
+
+                QueryBuilder<StatsDb, ?> qb = dao.queryBuilder();
+                qb.where().eq(StatsDb.TYPE, type);
+
+                StatsDb result = dao.queryForFirst(qb.prepare());
+
+                playerHasStatsDb.setPlayerDb(((MainActivity) getActivity()).getPlayer());
+                playerHasStatsDb.setStatsDb(result);
+
+                EditText editText = (EditText) stats.findViewById(R.id.ll_stats_value);
+                playerHasStatsDb.setValue(editText.getText());
+
                 playerHasStatsDb.save();
             } catch (SQLException e) {
                 e.printStackTrace();
