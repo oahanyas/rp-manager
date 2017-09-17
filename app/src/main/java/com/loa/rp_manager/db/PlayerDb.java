@@ -2,7 +2,9 @@ package com.loa.rp_manager.db;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 import com.loa.rp_manager.utils.Utils;
 
@@ -50,6 +52,9 @@ public class PlayerDb implements Serializable {
     public static final String WEIGHT = "weight";
     @DatabaseField(columnName = WEIGHT)
     protected Integer weight = 0;
+
+    @ForeignCollectionField()
+    protected ForeignCollection<PlayerHasStatsDb> playerHasStatsDb;
 
     public void save() throws SQLException {
         OrmLiteSqliteOpenHelper helper = Utils.getHelper();
@@ -130,5 +135,13 @@ public class PlayerDb implements Serializable {
 
     public void setWeight(Integer weight) {
         this.weight = weight;
+    }
+
+    public ForeignCollection<PlayerHasStatsDb> getPlayerHasStatsDb() {
+        return playerHasStatsDb;
+    }
+
+    public void setPlayerHasStatsDb(ForeignCollection<PlayerHasStatsDb> playerHasStatsDb) {
+        this.playerHasStatsDb = playerHasStatsDb;
     }
 }

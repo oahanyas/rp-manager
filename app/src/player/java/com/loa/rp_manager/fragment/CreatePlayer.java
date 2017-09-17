@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.loa.rp_manager.MainActivity;
 import com.loa.rp_manager.R;
 import com.loa.rp_manager.db.PlayerDb;
 
@@ -46,31 +47,27 @@ public class CreatePlayer extends Fragment {
 
     @AfterViews
     protected void afterView(){
-        Bundle bundle = this.getArguments();
-
+        playerDb = ((MainActivity) getActivity()).getPlayer();
         sexeMan.setChecked(true);
-        if(bundle != null){
-            playerDb = (PlayerDb) bundle.getSerializable("player");
 
-            if(playerDb != null) {
-                name.setText(playerDb.getName());
-                name.setEnabled(false);
+        if(playerDb != null) {
+            name.setText(playerDb.getName());
+            name.setEnabled(false);
 
-                origin.setText(playerDb.getOrigin());
-                origin.setEnabled(false);
+            origin.setText(playerDb.getOrigin());
+            origin.setEnabled(false);
 
-                race.setText(playerDb.getRace());
-                race.setEnabled(false);
+            race.setText(playerDb.getRace());
+            race.setEnabled(false);
 
-                if(playerDb.getSexe()){
-                    sexeMan.setChecked(true);
-                } else {
-                    sexeWoman.setChecked(true);
-                }
-                sexe.setEnabled(false);
-                sexeMan.setEnabled(false);
-                sexeWoman.setEnabled(false);
+            if(playerDb.getSexe()){
+                sexeMan.setChecked(true);
+            } else {
+                sexeWoman.setChecked(true);
             }
+            sexe.setEnabled(false);
+            sexeMan.setEnabled(false);
+            sexeWoman.setEnabled(false);
         }
     }
 

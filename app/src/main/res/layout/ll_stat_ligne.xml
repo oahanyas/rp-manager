@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:weightSum="6">
+    android:weightSum="5">
 
     <TextView
         android:id="@+id/ll_stats_ligne_description"
@@ -14,25 +14,18 @@
         android:text="Statistique" />
 
     <EditText
+        android:id="@+id/ll_stats_value"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:ems="10"
-        android:enabled="false"
         android:inputType="number" />
 
     <ImageView
+        android:id="@+id/ll_stats_add"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:enabled="false"
-        android:src="@drawable/ic_action_minus" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:enabled="false"
         android:src="@drawable/ic_action_add" />
 
     <ImageView

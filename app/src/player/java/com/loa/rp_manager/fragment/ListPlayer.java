@@ -3,6 +3,7 @@ package com.loa.rp_manager.fragment;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.loa.rp_manager.MainActivity;
 import com.loa.rp_manager.R;
 import com.loa.rp_manager.db.PlayerDb;
 import com.loa.rp_manager.utils.Utils;
@@ -45,6 +47,8 @@ public class ListPlayer extends Fragment {
 
     @AfterViews
     protected void afterView(){
+        ((MainActivity) getActivity()).updateMenu();
+
         Display display = getActivity().getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
@@ -65,14 +69,12 @@ public class ListPlayer extends Fragment {
             addPlayer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    ((MainActivity) getActivity()).setPlayer(player);
+                    ((MainActivity) getActivity()).updateMenu();
+
                     FragmentManager fm = getFragmentManager();
                     FragmentTransaction ft = fm.beginTransaction();
                     Fragment newFragment = new StatsPlayer_();
-
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("player", player);
-
-                    newFragment.setArguments(bundle);
 
                     ft.addToBackStack(null);
                     ft.replace(R.id.fragment_manager, newFragment, newFragment.getClass().getName());
