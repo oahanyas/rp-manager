@@ -32,7 +32,7 @@ public class StatsDb implements Serializable {
 
         PlayerHelper absHelper = (PlayerHelper) helper;
         @SuppressWarnings("unchecked")
-        Dao<StatsDb, String> dao = (Dao<StatsDb, String>) absHelper.getDao(getClass());
+        Dao<StatsDb, Integer> dao = (Dao<StatsDb, Integer>) absHelper.getDao(getClass());
         dao.createOrUpdate(this);
     }
 

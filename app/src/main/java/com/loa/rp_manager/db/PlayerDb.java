@@ -61,7 +61,7 @@ public class PlayerDb implements Serializable {
 
         PlayerHelper absHelper = (PlayerHelper) helper;
         @SuppressWarnings("unchecked")
-        Dao<PlayerDb, String> dao = (Dao<PlayerDb, String>) absHelper.getDao(getClass());
+        Dao<PlayerDb, Integer> dao = (Dao<PlayerDb, Integer>) absHelper.getDao(getClass());
         dao.createOrUpdate(this);
     }
 

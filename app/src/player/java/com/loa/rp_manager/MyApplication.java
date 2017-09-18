@@ -17,7 +17,7 @@ public class MyApplication extends MyApplicationAbstract {
     public void onCreate() {
         super.onCreate();
 
-        /*
+        /**/
         String myPath = DATABASE_PATH + DATABASE_NAME;
         File dbfile = new File(myPath);
         dbfile.delete();
