@@ -91,7 +91,7 @@ public class StatsPlayer extends Fragment {
         View addStat = mLayoutInflater.inflate(R.layout.ll_stat_ligne, null);
 
         TextView idView = (TextView) addStat.findViewById(R.id.ll_stats_ligne_id);
-        idView.setText(statsDb.getId());
+        idView.setText(String.valueOf(statsDb.getId()));
 
         TextView typeView = (TextView) addStat.findViewById(R.id.ll_stats_ligne_type);
         typeView.setText(statsDb.getType() + " : ");
@@ -107,7 +107,7 @@ public class StatsPlayer extends Fragment {
 
         if(value > 0){
             EditText editText = (EditText) addStat.findViewById(R.id.ll_stats_value);
-            editText.setText(value);
+            editText.setText(String.valueOf(value));
             editText.setEnabled(false);
 
             ImageView imageView = (ImageView) addStat.findViewById(R.id.ll_stats_add);
@@ -130,26 +130,50 @@ public class StatsPlayer extends Fragment {
     protected void saveStats(){
         final int childCount = stats.getChildCount();
 
+
+        boolean result = true;
         for (int i = 0; i < childCount; i++) {
-            PlayerHasStatsDb playerHasStatsDb = new PlayerHasStatsDb();
-
             View statsLigne = stats.getChildAt(i);
-            TextView idView = (TextView) statsLigne.findViewById(R.id.ll_stats_ligne_id);
 
-            try {
-                Dao<StatsDb, Integer> dao = Utils.getHelper().getDao(StatsDb.class);
-                StatsDb result = dao.queryForId(Integer.valueOf(idView.getText().toString()));
-
-                playerHasStatsDb.setPlayerDb(((MainActivity) getActivity()).getPlayer());
-                playerHasStatsDb.setStatsDb(result);
-
-                EditText editText = (EditText) stats.findViewById(R.id.ll_stats_value);
-                playerHasStatsDb.setValue(Integer.valueOf(editText.getText().toString()));
-
-                playerHasStatsDb.save();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            EditText editText = (EditText) statsLigne.findViewById(R.id.ll_stats_value);
+            if(Integer.valueOf(editText.getText().toString()) <= 0){
+                result = false;
+                break;
             }
+        }
+
+
+        if(result){
+            for (int i = 0; i < childCount; i++) {
+                PlayerHasStatsDb playerHasStatsDb = new PlayerHasStatsDb();
+
+                View statsLigne = stats.getChildAt(i);
+                TextView idView = (TextView) statsLigne.findViewById(R.id.ll_stats_ligne_id);
+
+                try {
+                    Dao<StatsDb, Integer> dao = Utils.getHelper().getDao(StatsDb.class);
+
+                    StatsDb statsDb = dao.queryForId(Integer.valueOf(idView.getText().toString()));
+
+                    playerHasStatsDb.setPlayerDb(((MainActivity) getActivity()).getPlayer());
+                    playerHasStatsDb.setStatsDb(statsDb);
+
+                    EditText editText = (EditText) statsLigne.findViewById(R.id.ll_stats_value);
+                    playerHasStatsDb.setValue(Integer.valueOf(editText.getText().toString()));
+
+                    playerHasStatsDb.save();
+                } catch (SQLException e) {
+                    result = false;
+                    e.printStackTrace();
+                }
+            }
+            if(result){
+                getFragmentManager().popBackStack();
+            } else {
+                //TODO ERRROR
+            }
+        } else {
+            //TODO ERRROR
         }
     }
 }

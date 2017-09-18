@@ -14,11 +14,13 @@ import java.sql.SQLException;
  */
 @DatabaseTable(tableName = "player_has_stats")
 public class PlayerHasStatsDb implements Serializable {
+    @DatabaseField(id = true, columnName = "id")
+    protected Integer id;
 
     @DatabaseField(foreign = true, columnName = "player")
     protected PlayerDb playerDb;
 
-    @DatabaseField(foreign = true, columnName = "stats")
+    @DatabaseField(foreign = true, columnName = "stats", foreignAutoRefresh = true)
     protected StatsDb statsDb;
 
     public static final String VALUE = "value";
