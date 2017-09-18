@@ -92,7 +92,8 @@ public class CreatePlayer extends Fragment {
 
             FragmentManager fm = getFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
-            ListPlayer_ newFragment = new ListPlayer_();
+            StatsPlayer_ newFragment = new StatsPlayer_();
+            ft.addToBackStack(null);
             ft.replace(R.id.fragment_manager, newFragment, newFragment.getClass().getName());
             ft.commit();
         } catch (SQLException e) {
