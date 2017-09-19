@@ -12,6 +12,7 @@
         android:weightSum="4" >
 
         <TextView
+            android:id="@+id/list_item_class_description"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
@@ -33,6 +34,7 @@
             android:text="Achetype : "/>
 
         <TextView
+            android:id="@+id/list_item_class_achetype"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
@@ -45,6 +47,7 @@
             android:text="Multiplicateur de vie : " />
 
         <TextView
+            android:id="@+id/list_item_class_multi"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
@@ -64,6 +67,7 @@
             android:text="PV : " />
 
         <TextView
+            android:id="@+id/list_item_class_pv"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
@@ -76,6 +80,7 @@
             android:text="Initiative : " />
 
         <TextView
+            android:id="@+id/list_item_class_init"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
