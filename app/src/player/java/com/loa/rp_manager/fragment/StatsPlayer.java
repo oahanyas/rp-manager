@@ -3,6 +3,8 @@ package com.loa.rp_manager.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -130,7 +132,6 @@ public class StatsPlayer extends Fragment {
     protected void saveStats(){
         final int childCount = stats.getChildCount();
 
-
         boolean result = true;
         for (int i = 0; i < childCount; i++) {
             View statsLigne = stats.getChildAt(i);
@@ -141,7 +142,6 @@ public class StatsPlayer extends Fragment {
                 break;
             }
         }
-
 
         if(result){
             for (int i = 0; i < childCount; i++) {
@@ -168,7 +168,12 @@ public class StatsPlayer extends Fragment {
                 }
             }
             if(result){
-                getFragmentManager().popBackStack();
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ListClass_ newFragment = new ListClass_();
+                ft.addToBackStack(null);
+                ft.replace(R.id.fragment_manager, newFragment, newFragment.getClass().getName());
+                ft.commit();
             } else {
                 //TODO ERRROR
             }

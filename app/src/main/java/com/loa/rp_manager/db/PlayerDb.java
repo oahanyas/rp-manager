@@ -34,8 +34,8 @@ public class PlayerDb implements Serializable {
     protected Integer lvl = 1;
 
     public static final String RACE = "race";
-    @DatabaseField(columnName = RACE, canBeNull = false)
-    protected String race;
+    @DatabaseField(columnName = RACE)
+    protected String race = "humain";
 
     public static final String ORIGIN = "origin";
     @DatabaseField(columnName = ORIGIN)
@@ -52,6 +52,10 @@ public class PlayerDb implements Serializable {
     public static final String WEIGHT = "weight";
     @DatabaseField(columnName = WEIGHT)
     protected Integer weight = 0;
+
+    public static final String BEAUTY = "beauty";
+    @DatabaseField(columnName = BEAUTY)
+    protected Integer beauty = 0;
 
     @ForeignCollectionField()
     protected ForeignCollection<PlayerHasStatsDb> playerHasStatsDb;
@@ -143,5 +147,13 @@ public class PlayerDb implements Serializable {
 
     public void setPlayerHasStatsDb(ForeignCollection<PlayerHasStatsDb> playerHasStatsDb) {
         this.playerHasStatsDb = playerHasStatsDb;
+    }
+
+    public Integer getBeauty() {
+        return beauty;
+    }
+
+    public void setBeauty(Integer beauty) {
+        this.beauty = beauty;
     }
 }

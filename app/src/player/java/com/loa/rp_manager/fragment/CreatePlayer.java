@@ -4,13 +4,16 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.InputFilter;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.j256.ormlite.stmt.query.In;
 import com.loa.rp_manager.MainActivity;
 import com.loa.rp_manager.R;
 import com.loa.rp_manager.db.PlayerDb;
+import com.loa.rp_manager.filter.InputFilterMinMax;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -31,8 +34,8 @@ public class CreatePlayer extends Fragment {
     @ViewById(R.id.fragment_player_information_origin)
     protected EditText origin;
 
-    @ViewById(R.id.fragment_player_information_race)
-    protected EditText race;
+    @ViewById(R.id.fragment_player_information_beauty)
+    protected EditText beauty;
 
     @ViewById(R.id.fragment_player_information_sexe)
     protected RadioGroup sexe;
@@ -47,6 +50,8 @@ public class CreatePlayer extends Fragment {
 
     @AfterViews
     protected void afterView(){
+        beauty.setFilters(new InputFilter[]{new InputFilterMinMax(1, 10)});
+
         playerDb = ((MainActivity) getActivity()).getPlayer();
         sexeMan.setChecked(true);
 
@@ -57,8 +62,8 @@ public class CreatePlayer extends Fragment {
             origin.setText(playerDb.getOrigin());
             origin.setEnabled(false);
 
-            race.setText(playerDb.getRace());
-            race.setEnabled(false);
+            beauty.setText(String.valueOf(playerDb.getBeauty()));
+            beauty.setEnabled(false);
 
             if(playerDb.getSexe()){
                 sexeMan.setChecked(true);
@@ -78,7 +83,7 @@ public class CreatePlayer extends Fragment {
         }
 
         playerDb.setName(name.getText().toString());
-        playerDb.setRace(race.getText().toString());
+        playerDb.setBeauty(Integer.valueOf(beauty.getText().toString()));
         playerDb.setOrigin(origin.getText().toString());
 
         if(sexeMan.isChecked()){
