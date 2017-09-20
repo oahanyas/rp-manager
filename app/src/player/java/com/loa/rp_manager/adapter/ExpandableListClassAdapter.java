@@ -12,25 +12,25 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 import com.loa.rp_manager.R;
+import com.loa.rp_manager.db.ClassDb;
 
 public class ExpandableListClassAdapter extends BaseExpandableListAdapter {
 
     private Context _context;
     private List<String> _listDataHeader; // header titles
     // child data in format of header title, child title
-    private HashMap<String, List<String>> _listDataChild;
+    private HashMap<String, ClassDb> _listDataChild;
 
     public ExpandableListClassAdapter(Context context, List<String> listDataHeader,
-                                 HashMap<String, List<String>> listChildData) {
+                                 HashMap<String, ClassDb> listChildData) {
         this._context = context;
         this._listDataHeader = listDataHeader;
         this._listDataChild = listChildData;
     }
 
     @Override
-    public Object getChild(int groupPosition, int childPosititon) {
-        return this._listDataChild.get(this._listDataHeader.get(groupPosition))
-                .get(childPosititon);
+    public ClassDb getChild(int groupPosition, int childPosititon) {
+        return this._listDataChild.get(this._listDataHeader.get(groupPosition));
     }
 
     @Override
@@ -42,7 +42,7 @@ public class ExpandableListClassAdapter extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
 
-        final String childText = (String) getChild(groupPosition, childPosition);
+        final ClassDb classDb = getChild(groupPosition, childPosition);
 
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
@@ -50,17 +50,30 @@ public class ExpandableListClassAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.list_item_class, null);
         }
 
-        TextView txtListChild = (TextView) convertView
-                .findViewById(R.id.lblListItem);
+        TextView desc = (TextView) convertView.findViewById(R.id.list_item_class_description);
+        desc.setText(classDb.getDescription());
 
-        txtListChild.setText(childText);
+        TextView achetype = (TextView) convertView.findViewById(R.id.list_item_class_achetype);
+        achetype.setText(classDb.getAchetype());
+
+        TextView multi = (TextView) convertView.findViewById(R.id.list_item_class_multi);
+        multi.setText(String.valueOf(classDb.getMultiplicateuPv()));
+
+        TextView pv = (TextView) convertView.findViewById(R.id.list_item_class_pv);
+        pv.setText(String.valueOf(classDb.getPv()));
+
+        TextView init = (TextView) convertView.findViewById(R.id.list_item_class_init);
+        init.setText(String.valueOf(classDb.getInitiative()));
+
+        TextView runeInne = (TextView) convertView.findViewById(R.id.list_item_class_rune_inne);
+        runeInne.setText(String.valueOf(classDb.getRuneInne()));
+
         return convertView;
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return this._listDataChild.get(this._listDataHeader.get(groupPosition))
-                .size();
+        return this._listDataChild.size();
     }
 
     @Override
