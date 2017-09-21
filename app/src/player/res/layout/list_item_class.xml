@@ -12,12 +12,47 @@
         android:weightSum="4" >
 
         <TextView
+            android:layout_weight="4"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:text="Description : " />
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:weightSum="4" >
+
+        <TextView
             android:id="@+id/list_item_class_description"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="LAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALAAAAAAAAAAA
             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#FF909090" />
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:weightSum="4" >
+
+        <TextView
+            android:layout_weight="4"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:text="Information général : " />
     </android.support.v7.widget.LinearLayoutCompat>
 
     <android.support.v7.widget.LinearLayoutCompat
@@ -105,5 +140,104 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="1"  />
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#FF909090" />
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:weightSum="4" >
+
+        <TextView
+            android:layout_weight="4"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:text="Competence principal : " />
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:weightSum="4" >
+        <TextView
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Rune inne : " />
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#FF909090" />
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:weightSum="4" >
+
+        <TextView
+            android:layout_weight="4"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:text="Competence secondaire : " />
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:weightSum="4" >
+        <TextView
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Rune inne : " />
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#FF909090" />
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:weightSum="4" >
+
+        <TextView
+            android:layout_weight="4"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:text="Bonus par niveau : " />
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:weightSum="4" >
+        <TextView
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Rune inne : " />
     </android.support.v7.widget.LinearLayoutCompat>
 </LinearLayout>
