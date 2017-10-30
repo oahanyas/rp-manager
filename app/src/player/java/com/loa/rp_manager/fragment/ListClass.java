@@ -1,6 +1,8 @@
 package com.loa.rp_manager.fragment;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
@@ -11,6 +13,7 @@ import com.loa.rp_manager.db.ClassDb;
 import com.loa.rp_manager.utils.Utils;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
@@ -102,6 +105,20 @@ public class ListClass extends Fragment {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Click(R.id.fragment_player_list_valider)
+    protected void validate(){
+        if(true){
+            FragmentManager fm = getFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            ListClass_ newFragment = new ListClass_();
+            ft.addToBackStack(null);
+            ft.replace(R.id.fragment_manager, newFragment, newFragment.getClass().getName());
+            ft.commit();
+        } else {
+            //TODO ERRROR
         }
     }
 }

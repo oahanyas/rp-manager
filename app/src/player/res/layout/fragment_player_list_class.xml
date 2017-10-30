@@ -1,15 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<android.support.percent.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ScrollView
+        android:id="@+id/fragment_player_list_scroll_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        app:layout_heightPercent="85%" >
 
         <ExpandableListView
             android:id="@+id/fragment_player_list_class_elv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </ScrollView>
-</LinearLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/fragment_player_list_scroll_view"
+        android:layout_width="match_parent"
+        app:layout_heightPercent="15%">
+
+        <Button
+            android:id="@+id/fragment_player_list_valider"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Valider"/>
+    </RelativeLayout>
+</android.support.percent.PercentRelativeLayout>

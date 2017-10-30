@@ -1,6 +1,5 @@
 package com.loa.rp_manager.fragment;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -9,7 +8,6 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.j256.ormlite.stmt.query.In;
 import com.loa.rp_manager.MainActivity;
 import com.loa.rp_manager.R;
 import com.loa.rp_manager.db.PlayerDb;
