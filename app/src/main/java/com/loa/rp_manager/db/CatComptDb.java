@@ -29,6 +29,8 @@ public class CatComptDb implements Serializable {
     @DatabaseField(columnName = PRINCIPAL)
     protected Boolean principal;
 
+    public static final String COMPTS = "COMPTS";
+    @ForeignCollectionField(columnName = COMPTS, eager = true)
     protected ForeignCollection<ComptDb> competences;
 
     public void save() throws SQLException {
@@ -38,5 +40,41 @@ public class CatComptDb implements Serializable {
         @SuppressWarnings("unchecked")
         Dao<CatComptDb, Integer> dao = (Dao<CatComptDb, Integer>) absHelper.getDao(getClass());
         dao.createOrUpdate(this);
+    }
+
+    public ForeignCollection<ComptDb> getListCompt() {
+        return competences;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public Boolean getPrincipal() {
+        return principal;
+    }
+
+    public void setPrincipal(Boolean principal) {
+        this.principal = principal;
+    }
+
+    public ForeignCollection<ComptDb> getCompetences() {
+        return competences;
+    }
+
+    public void setCompetences(ForeignCollection<ComptDb> competences) {
+        this.competences = competences;
     }
 }

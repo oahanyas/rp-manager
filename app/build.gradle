@@ -3,12 +3,13 @@ apply plugin: 'io.fabric'
 
 buildscript {
     repositories {
+        google()
         mavenCentral()
         maven { url 'https://maven.fabric.io/public' }
     }
     dependencies {
         // replace with the current version of the Android plugin
-        classpath 'com.android.tools.build:gradle:2.3.0'
+        classpath 'com.android.tools.build:gradle:3.0.1'
         classpath 'io.fabric.tools:gradle:1.+'
     }
 }
@@ -21,14 +22,14 @@ repositories {
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "26.0.1"
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         applicationId "com.loa.rp_manager"
         minSdkVersion 13
         targetSdkVersion 25
         versionCode 1
-        versionName "1.0.0"
+        versionName "1.1.0"
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
@@ -45,12 +46,17 @@ android {
         }
     }
 
+    // Specifies two flavor dimensions.
+    flavorDimensions "master", "player"
+
     productFlavors {
         master {
+            dimension "master"
             //applicationId "com.loa.rp_manager.master"
         }
 
         player {
+            dimension "player"
             //applicationId "com.loa.rp_manager.player"
         }
     }

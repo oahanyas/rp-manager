@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import com.loa.rp_manager.R;
 import com.loa.rp_manager.adapter.ExpandableListClassAdapter;
-import com.loa.rp_manager.db.ClassDb;
+import com.loa.rp_manager.db.JobDb;
 import com.loa.rp_manager.utils.Utils;
 
 import org.androidannotations.annotations.AfterViews;
@@ -33,7 +33,7 @@ public class ListClass extends Fragment {
 
     private ExpandableListClassAdapter listAdapter;
     private List<String> listDataHeader;
-    private HashMap<String, ClassDb> listDataChild;
+    private HashMap<String, JobDb> listDataChild;
 
     @AfterViews
     protected void afterView(){
@@ -94,14 +94,14 @@ public class ListClass extends Fragment {
      */
     private void prepareListData() {
         listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String, ClassDb>();
+        listDataChild = new HashMap<String, JobDb>();
 
         try {
-            List<ClassDb> classDbs = Utils.getHelper().getDao(ClassDb.class).queryForAll();
+            List<JobDb> jobDbs = Utils.getHelper().getDao(JobDb.class).queryForAll();
 
-            for (ClassDb classDb : classDbs) {
-                listDataHeader.add(classDb.getTitre());
-                listDataChild.put(classDb.getTitre(), classDb);
+            for (JobDb jobDb : jobDbs) {
+                listDataHeader.add(jobDb.getTitre());
+                listDataChild.put(jobDb.getTitre(), jobDb);
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -2,9 +2,7 @@ package com.loa.rp_manager.db;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 import com.loa.rp_manager.utils.Utils;
 
@@ -15,14 +13,14 @@ import java.sql.SQLException;
  * Created by Hanyas on 06/09/2017.
  */
 @DatabaseTable(tableName = "player")
-public class ClassDb implements Serializable {
+public class JobDb implements Serializable {
 
     public static final String ID = "id";
     @DatabaseField(columnName = ID, id = true)
     protected Integer id;
 
-    public static final String TITLRE = "titre";
-    @DatabaseField(columnName = TITLRE)
+    public static final String TITLE = "titre";
+    @DatabaseField(columnName = TITLE)
     protected String titre;
 
     public static final String DESC = "description";
@@ -35,7 +33,7 @@ public class ClassDb implements Serializable {
 
     public static final String MULTI_PV = "multiplicateur_pv";
     @DatabaseField(columnName = MULTI_PV)
-    protected int multiplicateuPv;
+    protected int multiplicateurPv;
 
     public static final String PV = "pv";
     @DatabaseField(columnName = PV)
@@ -54,7 +52,7 @@ public class ClassDb implements Serializable {
 
         PlayerHelper absHelper = (PlayerHelper) helper;
         @SuppressWarnings("unchecked")
-        Dao<ClassDb, Integer> dao = (Dao<ClassDb, Integer>) absHelper.getDao(getClass());
+        Dao<JobDb, Integer> dao = (Dao<JobDb, Integer>) absHelper.getDao(getClass());
         dao.createOrUpdate(this);
     }
 
@@ -90,12 +88,12 @@ public class ClassDb implements Serializable {
         this.achetype = achetype;
     }
 
-    public int getMultiplicateuPv() {
-        return multiplicateuPv;
+    public int getMultiplicateurPv() {
+        return multiplicateurPv;
     }
 
-    public void setMultiplicateuPv(int multiplicateuPv) {
-        this.multiplicateuPv = multiplicateuPv;
+    public void setMultiplicateurPv(int multiplicateurPv) {
+        this.multiplicateurPv = multiplicateurPv;
     }
 
     public int getPv() {
