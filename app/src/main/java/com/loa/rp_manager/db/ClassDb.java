@@ -12,8 +12,8 @@ import java.sql.SQLException;
 /**
  * Created by Hanyas on 06/09/2017.
  */
-@DatabaseTable(tableName = "player")
-public class JobDb implements Serializable {
+@DatabaseTable(tableName = "job")
+public class ClassDb implements Serializable {
 
     public static final String ID = "id";
     @DatabaseField(columnName = ID, id = true)
@@ -52,7 +52,7 @@ public class JobDb implements Serializable {
 
         PlayerHelper absHelper = (PlayerHelper) helper;
         @SuppressWarnings("unchecked")
-        Dao<JobDb, Integer> dao = (Dao<JobDb, Integer>) absHelper.getDao(getClass());
+        Dao<ClassDb, Integer> dao = (Dao<ClassDb, Integer>) absHelper.getDao(getClass());
         dao.createOrUpdate(this);
     }
 

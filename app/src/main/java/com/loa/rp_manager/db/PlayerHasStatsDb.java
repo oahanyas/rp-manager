@@ -14,7 +14,7 @@ import java.sql.SQLException;
  */
 @DatabaseTable(tableName = "player_has_stats")
 public class PlayerHasStatsDb implements Serializable {
-    @DatabaseField(id = true, columnName = "id")
+    @DatabaseField(generatedId = true, columnName = "id")
     protected Integer id;
 
     @DatabaseField(foreign = true, columnName = "player")

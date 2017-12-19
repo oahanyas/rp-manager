@@ -18,7 +18,7 @@ import java.sql.SQLException;
 public class PlayerDb implements Serializable {
 
     public static final String ID = "id";
-    @DatabaseField(columnName = ID, id = true)
+    @DatabaseField(columnName = ID, generatedId = true)
     protected Integer id;
 
     public static final String NAME = "name";

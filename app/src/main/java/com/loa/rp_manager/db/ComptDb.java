@@ -12,22 +12,22 @@ import java.sql.SQLException;
 /**
  * Created by Hanyas on 25/09/2017.
  */
-@DatabaseTable(tableName = "player")
+@DatabaseTable(tableName = "comp")
 public class ComptDb implements Serializable {
 
     public static final String ID = "id";
     @DatabaseField(columnName = ID, id = true)
     protected Integer id;
 
-    public static final String CATCOMPT = "CATCOMPT";
-    @DatabaseField(foreign = true, columnName = "CATCOMPT", foreignAutoRefresh = true, maxForeignAutoRefreshLevel = 1)
+    public static final String CATCOMPT = "cat_compt";
+    @DatabaseField(foreign = true, columnName = CATCOMPT, foreignAutoRefresh = true, maxForeignAutoRefreshLevel = 1)
     protected CatComptDb catCompt;
 
     public static final String TITRE = "titre";
     @DatabaseField(columnName = TITRE)
     protected String titre;
 
-    public static final String DESC = "DESC";
+    public static final String DESC = "desc";
     @DatabaseField(columnName = DESC)
     protected String description;
 

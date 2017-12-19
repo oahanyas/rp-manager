@@ -1,25 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-        maven { url 'https://maven.fabric.io/public' }
-    }
-    dependencies {
-        // replace with the current version of the Android plugin
-        classpath 'com.android.tools.build:gradle:3.0.1'
-        classpath 'io.fabric.tools:gradle:1.+'
-    }
-}
-
-repositories {
-    mavenCentral()
-    mavenLocal()
-    maven { url 'https://maven.fabric.io/public' }
-}
-
 android {
     compileSdkVersion 25
     buildToolsVersion '26.0.2'
@@ -29,7 +10,7 @@ android {
         minSdkVersion 13
         targetSdkVersion 25
         versionCode 1
-        versionName "1.1.0"
+        versionName "1.1.1"
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
@@ -47,19 +28,36 @@ android {
     }
 
     // Specifies two flavor dimensions.
-    flavorDimensions "master", "player"
+    flavorDimensions "default"
 
     productFlavors {
         master {
-            dimension "master"
             //applicationId "com.loa.rp_manager.master"
         }
 
         player {
-            dimension "player"
             //applicationId "com.loa.rp_manager.player"
         }
     }
+}
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://maven.fabric.io/public' }
+    }
+    dependencies {
+        // replace with the current version of the Android plugin
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven { url 'https://maven.fabric.io/public' }
 }
 
 apply plugin: 'com.android.application'

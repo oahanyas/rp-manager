@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import com.loa.rp_manager.R;
 import com.loa.rp_manager.adapter.ExpandableListClassAdapter;
-import com.loa.rp_manager.db.JobDb;
+import com.loa.rp_manager.db.ClassDb;
 import com.loa.rp_manager.utils.Utils;
 
 import org.androidannotations.annotations.AfterViews;
@@ -33,7 +33,7 @@ public class ListClass extends Fragment {
 
     private ExpandableListClassAdapter listAdapter;
     private List<String> listDataHeader;
-    private HashMap<String, JobDb> listDataChild;
+    private HashMap<String, ClassDb> listDataChild;
 
     @AfterViews
     protected void afterView(){
@@ -44,49 +44,6 @@ public class ListClass extends Fragment {
 
         // setting list adapter
         expandableListView.setAdapter(listAdapter);
-
-        // Listview Group click listener
-        expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-
-            @Override
-            public boolean onGroupClick(ExpandableListView parent, View v,
-                                        int groupPosition, long id) {
-                // Toast.makeText(getApplicationContext(),
-                // "Group Clicked " + listDataHeader.get(groupPosition),
-                // Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        });
-
-        // Listview Group expanded listener
-        expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
-            @Override
-            public void onGroupExpand(int groupPosition) {
-                Toast.makeText(getContext(),
-                        listDataHeader.get(groupPosition) + " Expanded",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        // Listview Group collasped listener
-        expandableListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
-            @Override
-            public void onGroupCollapse(int groupPosition) {
-                Toast.makeText(getContext(),
-                        listDataHeader.get(groupPosition) + " Collapsed",
-                        Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-        // Listview on child click listener
-        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v,
-                                        int groupPosition, int childPosition, long id) {
-                return false;
-            }
-        });
     }
 
     /*
@@ -94,14 +51,14 @@ public class ListClass extends Fragment {
      */
     private void prepareListData() {
         listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String, JobDb>();
+        listDataChild = new HashMap<String, ClassDb>();
 
         try {
-            List<JobDb> jobDbs = Utils.getHelper().getDao(JobDb.class).queryForAll();
+            List<ClassDb> classDbs = Utils.getHelper().getDao(ClassDb.class).queryForAll();
 
-            for (JobDb jobDb : jobDbs) {
-                listDataHeader.add(jobDb.getTitre());
-                listDataChild.put(jobDb.getTitre(), jobDb);
+            for (ClassDb classDb : classDbs) {
+                listDataHeader.add(classDb.getTitre());
+                listDataChild.put(classDb.getTitre(), classDb);
             }
         } catch (SQLException e) {
             e.printStackTrace();

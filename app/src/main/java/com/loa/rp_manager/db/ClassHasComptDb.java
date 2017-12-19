@@ -8,8 +8,8 @@ import java.io.Serializable;
 /**
  * Created by hanyas on 18/12/2017.
  */
-@DatabaseTable(tableName = "player")
-public class JobHasComptDb implements Serializable {
+@DatabaseTable(tableName = "job_has_comp")
+public class ClassHasComptDb implements Serializable {
 
     public static final String ID = "id";
     @DatabaseField(columnName = ID, id = true)

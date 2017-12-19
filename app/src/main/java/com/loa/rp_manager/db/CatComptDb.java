@@ -14,7 +14,7 @@ import java.sql.SQLException;
 /**
  * Created by Hanyas on 06/09/2017.
  */
-@DatabaseTable(tableName = "player")
+@DatabaseTable(tableName = "cat_comp")
 public class CatComptDb implements Serializable {
 
     public static final String ID = "id";
@@ -27,9 +27,9 @@ public class CatComptDb implements Serializable {
 
     public static final String PRINCIPAL = "principal";
     @DatabaseField(columnName = PRINCIPAL)
-    protected Boolean principal;
+    protected Integer principal;
 
-    public static final String COMPTS = "COMPTS";
+    public static final String COMPTS = "compts";
     @ForeignCollectionField(columnName = COMPTS, eager = true)
     protected ForeignCollection<ComptDb> competences;
 
@@ -62,11 +62,11 @@ public class CatComptDb implements Serializable {
         this.titre = titre;
     }
 
-    public Boolean getPrincipal() {
+    public Integer getPrincipal() {
         return principal;
     }
 
-    public void setPrincipal(Boolean principal) {
+    public void setPrincipal(Integer principal) {
         this.principal = principal;
     }
 

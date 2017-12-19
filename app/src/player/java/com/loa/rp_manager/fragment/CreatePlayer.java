@@ -9,6 +9,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.loa.rp_manager.MainActivity;
+import com.loa.rp_manager.MainActivity_;
+import com.loa.rp_manager.MyApplication;
 import com.loa.rp_manager.R;
 import com.loa.rp_manager.db.PlayerDb;
 import com.loa.rp_manager.filter.InputFilterMinMax;
@@ -92,6 +94,7 @@ public class CreatePlayer extends Fragment {
 
         try {
             playerDb.save();
+            ((MainActivity) getActivity()).setPlayer(playerDb);
 
             FragmentManager fm = getFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
