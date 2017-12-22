@@ -15,21 +15,21 @@ public class ClassHasCatComptDb implements Serializable {
     @DatabaseField(columnName = ID, id = true)
     protected Integer id;
 
-    public static final String CLASS = "CLASS";
-    @DatabaseField(foreign = true, columnName = "CLASS", foreignAutoRefresh = true, maxForeignAutoRefreshLevel = 1)
-    protected Class job;
+    public static final String JOB = "job";
+    @DatabaseField(foreign = true, columnName = JOB, foreignAutoRefresh = true, maxForeignAutoRefreshLevel = 1)
+    protected ClassDb classDb;
 
-    public static final String CAT_COMPT = "CAT_COMPT";
-    @DatabaseField(foreign = true, columnName = "CAT_COMPT", foreignAutoRefresh = true, maxForeignAutoRefreshLevel = 1)
-    protected CatComptDb cat_compt;
+    public static final String CAT_COMPT = "cat_comp";
+    @DatabaseField(foreign = true, columnName = CAT_COMPT, foreignAutoRefresh = true, maxForeignAutoRefreshLevel = 1)
+    protected CatComptDb catCompt;
 
-    public static final String LIMIT = "LIMIT";
+    public static final String LIMIT = "limit";
     @DatabaseField(columnName = LIMIT)
     protected Integer limit;
 
-    public static final String DEFAULT = "DEFAULT";
+    public static final String DEFAULT = "default_cout";
     @DatabaseField(columnName = DEFAULT)
-    protected Integer default_cout;
+    protected Integer defaultCout;
 
     public Integer getId() {
         return id;
@@ -39,20 +39,20 @@ public class ClassHasCatComptDb implements Serializable {
         this.id = id;
     }
 
-    public Class getJob() {
-        return job;
+    public ClassDb getClassDb() {
+        return classDb;
     }
 
-    public void setJob(Class job) {
-        this.job = job;
+    public void setClassDb(ClassDb classDb) {
+        this.classDb = classDb;
     }
 
-    public CatComptDb getCat_compt() {
-        return cat_compt;
+    public CatComptDb getCatCompt() {
+        return catCompt;
     }
 
-    public void setCat_compt(CatComptDb cat_compt) {
-        this.cat_compt = cat_compt;
+    public void setCatCompt(CatComptDb catCompt) {
+        this.catCompt = catCompt;
     }
 
     public Integer getLimit() {
@@ -63,11 +63,11 @@ public class ClassHasCatComptDb implements Serializable {
         this.limit = limit;
     }
 
-    public Integer getDefault_cout() {
-        return default_cout;
+    public Integer getDefaultCout() {
+        return defaultCout;
     }
 
-    public void setDefault_cout(Integer default_cout) {
-        this.default_cout = default_cout;
+    public void setDefaultCout(Integer defaultCout) {
+        this.defaultCout = defaultCout;
     }
 }

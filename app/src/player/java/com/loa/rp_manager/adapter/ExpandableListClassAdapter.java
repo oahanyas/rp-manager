@@ -32,16 +32,13 @@ public class ExpandableListClassAdapter extends BaseExpandableListAdapter {
     // child data in format of header title, child title
     private HashMap<String, ClassDb> _listDataChild;
 
+    private int id;
+
     public ExpandableListClassAdapter(Context context, List<String> listDataHeader,
                                  HashMap<String, ClassDb> listChildData) {
         this._context = context;
         this._listDataHeader = listDataHeader;
         this._listDataChild = listChildData;
-    }
-
-    @Override
-    public int getChildrenCount(int groupPosition) {
-        return this._listDataChild.size();
     }
 
     @Override
@@ -76,6 +73,11 @@ public class ExpandableListClassAdapter extends BaseExpandableListAdapter {
         lblListHeader.setText(headerTitle);
 
         return convertView;
+    }
+
+    @Override
+    public int getChildrenCount(int groupPosition) {
+        return 1;
     }
 
     @Override
@@ -118,12 +120,20 @@ public class ExpandableListClassAdapter extends BaseExpandableListAdapter {
         TextView runeInne = (TextView) convertView.findViewById(R.id.list_item_class_rune_inne);
         runeInne.setText(String.valueOf(classDb.getRuneInne()));
 
+        id = 1;
         generatedCompetence(classDb, (LinearLayout) convertView, infalInflater, 1);
-        generatedCompetence(classDb, (LinearLayout) convertView, infalInflater, 0);
+        //generatedCompetence(classDb, (LinearLayout) convertView, infalInflater, 0);
 
         return convertView;
     }
 
+    /**
+     *
+     * @param classDb
+     * @param convertView
+     * @param infalInflater
+     * @param principal
+     */
     private void generatedCompetence(ClassDb classDb, LinearLayout convertView, LayoutInflater infalInflater, int principal) {
         try {
             List<CatComptDb> catComptDbs = getCatComptDbs(principal);
@@ -131,25 +141,27 @@ public class ExpandableListClassAdapter extends BaseExpandableListAdapter {
                 // Recuperer la valuer par défault de la competence
                 Dao<ClassHasCatComptDb, ?> jobHasCatComptDbs = Utils.getHelper().getDao(ClassHasCatComptDb.class);
                 QueryBuilder<ClassHasCatComptDb, ?> comptDbQueryBuilder = jobHasCatComptDbs.queryBuilder();
-                comptDbQueryBuilder.where().eq(ClassHasCatComptDb.CLASS, classDb.getId())
+                comptDbQueryBuilder.where().eq(ClassHasCatComptDb.JOB, classDb.getId())
                         .and().eq(ClassHasCatComptDb.CAT_COMPT, catComptDb.getId());
                 ClassHasCatComptDb classHasCatComptDb = jobHasCatComptDbs.queryForFirst(comptDbQueryBuilder.prepare());
 
                 // Genere une ligne de competence global
-                RelativeLayout competencesView = (RelativeLayout) infalInflater.inflate(R.layout.list_class_competences, null);
+                LinearLayout competencesView = (LinearLayout) infalInflater.inflate(R.layout.list_class_competences, null);
+                competencesView.setId(id);
                 TextView titleCompetences = (TextView) competencesView.findViewById(R.id.list_class_competences_title);
-                titleCompetences.setText(catComptDb.getTitre());
+                titleCompetences.setText(catComptDb.getTitre() + " :");
 
                 // Parcours la liste des competences
                 ForeignCollection<ComptDb> comptDbs = catComptDb.getListCompt();
                 for (ComptDb comptDb : comptDbs) {
                     View competenceView = infalInflater.inflate(R.layout.list_class_competence, null);
-                    TextView titleCompetence = (TextView) competenceView.findViewById(R.id.list_class_competence_title);
-                    titleCompetence.setText(comptDb.getTitre());
+                    competenceView.getId();
 
-                    TextView valueCompetence = (TextView) competenceView.findViewById(R.id.list_class_competence_value);
+                    TextView titleCompetence = (TextView) competenceView.findViewById(R.id.list_class_competence_title);
+                    titleCompetence.setText(comptDb.getTitre() + " :");
 
                     // Hydrate la valeurs des competences
+                    TextView valueCompetence = (TextView) competenceView.findViewById(R.id.list_class_competence_value);
                     Dao<ClassHasComptDb, ?> jobHasComptDbs = Utils.getHelper().getDao(ClassHasComptDb.class);
                     QueryBuilder<ClassHasComptDb, ?> jobHasComptDbQueryBuilder = jobHasComptDbs.queryBuilder();
                     jobHasComptDbQueryBuilder.where().eq(ClassHasComptDb.CLASS, classDb.getId())
@@ -157,15 +169,19 @@ public class ExpandableListClassAdapter extends BaseExpandableListAdapter {
 
                     ClassHasComptDb classHasComptDb = jobHasComptDbs.queryForFirst(jobHasComptDbQueryBuilder.prepare());
                     // Si la competences n'est pas trouver, on met la valeur par default
-                    if(classHasComptDb.equals(null)){
-                        valueCompetence.setText(classHasCatComptDb.getDefault_cout());
+                    if(classHasComptDb == null){
+                        valueCompetence.setText(String.valueOf(classHasCatComptDb.getDefaultCout()));
                     } else {
-                        valueCompetence.setText(classHasComptDb.getValue());
+                        valueCompetence.setText(String.valueOf(classHasComptDb.getValue()));
                     }
 
+                    RelativeLayout.LayoutParams params= new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    params.addRule(RelativeLayout.BELOW, id);
+                    competenceView.setLayoutParams(params);
+                    id++;
+                    competenceView.setId(id);
                     competencesView.addView(competenceView);
                 }
-
                 convertView.addView(competencesView);
             }
         } catch (SQLException e) {

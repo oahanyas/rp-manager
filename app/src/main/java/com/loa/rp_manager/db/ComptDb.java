@@ -19,7 +19,7 @@ public class ComptDb implements Serializable {
     @DatabaseField(columnName = ID, id = true)
     protected Integer id;
 
-    public static final String CATCOMPT = "cat_compt";
+    public static final String CATCOMPT = "cat_comp";
     @DatabaseField(foreign = true, columnName = CATCOMPT, foreignAutoRefresh = true, maxForeignAutoRefreshLevel = 1)
     protected CatComptDb catCompt;
 
@@ -27,7 +27,7 @@ public class ComptDb implements Serializable {
     @DatabaseField(columnName = TITRE)
     protected String titre;
 
-    public static final String DESC = "desc";
+    public static final String DESC = "description";
     @DatabaseField(columnName = DESC)
     protected String description;
 

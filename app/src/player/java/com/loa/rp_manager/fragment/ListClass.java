@@ -35,12 +35,27 @@ public class ListClass extends Fragment {
     private List<String> listDataHeader;
     private HashMap<String, ClassDb> listDataChild;
 
+    private int lastExpandedPosition;
+
     @AfterViews
     protected void afterView(){
+        lastExpandedPosition = -1;
+
         // preparing list data
         prepareListData();
 
         listAdapter = new ExpandableListClassAdapter(this.getContext(), listDataHeader, listDataChild);
+
+        expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                if (lastExpandedPosition != -1
+                        && groupPosition != lastExpandedPosition) {
+                    expandableListView.collapseGroup(lastExpandedPosition);
+                }
+                lastExpandedPosition = groupPosition;
+            }
+        });
 
         // setting list adapter
         expandableListView.setAdapter(listAdapter);
@@ -50,8 +65,8 @@ public class ListClass extends Fragment {
      * Preparing the list data
      */
     private void prepareListData() {
-        listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String, ClassDb>();
+        listDataHeader = new ArrayList<>();
+        listDataChild = new HashMap<>();
 
         try {
             List<ClassDb> classDbs = Utils.getHelper().getDao(ClassDb.class).queryForAll();

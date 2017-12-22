@@ -15,23 +15,23 @@ public class ClassHasComptDb implements Serializable {
     @DatabaseField(columnName = ID, id = true)
     protected Integer id;
 
-    public static final String CLASS = "CLASS";
-    @DatabaseField(foreign = true, columnName = "CLASS", foreignAutoRefresh = true, maxForeignAutoRefreshLevel = 1)
-    protected Class job;
+    public static final String CLASS = "job";
+    @DatabaseField(foreign = true, columnName = CLASS, foreignAutoRefresh = true, maxForeignAutoRefreshLevel = 1)
+    protected ClassDb job;
 
-    public static final String COMPT = "COMPT";
-    @DatabaseField(foreign = true, columnName = "COMPT", foreignAutoRefresh = true, maxForeignAutoRefreshLevel = 1)
+    public static final String COMPT = "comp";
+    @DatabaseField(foreign = true, columnName = COMPT, foreignAutoRefresh = true, maxForeignAutoRefreshLevel = 1)
     protected ComptDb compt;
 
-    public static final String VALUE = "VALUE";
+    public static final String VALUE = "value";
     @DatabaseField(columnName = VALUE)
     protected Integer value;
 
-    public static final String BONUS = "BONUS";
+    public static final String BONUS = "bonus";
     @DatabaseField(columnName = BONUS)
     protected Integer bonus;
 
-    public static final String BONUS_MAX = "BONUS_MAX";
+    public static final String BONUS_MAX = "bonus_max";
     @DatabaseField(columnName = BONUS_MAX)
     protected Integer bonusMax;
 
@@ -43,11 +43,11 @@ public class ClassHasComptDb implements Serializable {
         this.id = id;
     }
 
-    public Class getJob() {
+    public ClassDb getJob() {
         return job;
     }
 
-    public void setJob(Class job) {
+    public void setJob(ClassDb job) {
         this.job = job;
     }
 

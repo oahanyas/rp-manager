@@ -9,19 +9,19 @@
     <ExpandableListView
             android:id="@+id/fragment_player_list_class_elv"
             android:layout_width="match_parent"
-            app:layout_heightPercent="85%"/>
+            app:layout_heightPercent="90%"/>
 
     <RelativeLayout
         android:layout_below="@id/fragment_player_list_class_elv"
         android:layout_width="match_parent"
-        app:layout_heightPercent="15%">
+        app:layout_heightPercent="10%">
 
         <Button
             android:id="@+id/fragment_player_list_valider"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="Valider"/>
     </RelativeLayout>
 </android.support.percent.PercentRelativeLayout>
