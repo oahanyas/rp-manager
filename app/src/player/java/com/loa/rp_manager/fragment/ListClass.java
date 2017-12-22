@@ -1,11 +1,11 @@
 package com.loa.rp_manager.fragment;
 
+import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.ExpandableListView;
-import android.widget.Toast;
 
 import com.loa.rp_manager.R;
 import com.loa.rp_manager.adapter.ExpandableListClassAdapter;
@@ -59,6 +59,14 @@ public class ListClass extends Fragment {
 
         // setting list adapter
         expandableListView.setAdapter(listAdapter);
+
+        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
+                expandableListView.setSelectedChild(i, i1, true);
+                return false;
+            }
+        });
     }
 
     /*
@@ -82,7 +90,9 @@ public class ListClass extends Fragment {
 
     @Click(R.id.fragment_player_list_valider)
     protected void validate(){
-        if(true){
+        long id = expandableListView.getSelectedId();
+
+        if(id != -1){
             FragmentManager fm = getFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
             ListClass_ newFragment = new ListClass_();

@@ -8,6 +8,7 @@
 
     <ExpandableListView
             android:id="@+id/fragment_player_list_class_elv"
+            android:choiceMode="singleChoice"
             android:layout_width="match_parent"
             app:layout_heightPercent="90%"/>
 

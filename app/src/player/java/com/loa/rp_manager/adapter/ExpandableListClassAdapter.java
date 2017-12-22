@@ -97,10 +97,7 @@ public class ExpandableListClassAdapter extends BaseExpandableListAdapter {
         ClassDb classDb = getChild(groupPosition, childPosition);
         LayoutInflater infalInflater = (LayoutInflater) this._context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        if (convertView == null) {
-            convertView = infalInflater.inflate(R.layout.list_item_class, null);
-        }
+        convertView = infalInflater.inflate(R.layout.list_item_class, null);
 
         TextView desc = (TextView) convertView.findViewById(R.id.list_item_class_description);
         desc.setText(classDb.getDescription());
@@ -122,7 +119,7 @@ public class ExpandableListClassAdapter extends BaseExpandableListAdapter {
 
         id = 1;
         generatedCompetence(classDb, (LinearLayout) convertView, infalInflater, 1);
-        //generatedCompetence(classDb, (LinearLayout) convertView, infalInflater, 0);
+        generatedCompetence(classDb, (LinearLayout) convertView, infalInflater, 0);
 
         return convertView;
     }
