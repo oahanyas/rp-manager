@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.ExpandableListView;
 
+import com.loa.rp_manager.MainActivity;
 import com.loa.rp_manager.R;
 import com.loa.rp_manager.adapter.ExpandableListClassAdapter;
 import com.loa.rp_manager.db.ClassDb;
@@ -36,6 +37,7 @@ public class ListClass extends Fragment {
     private HashMap<String, ClassDb> listDataChild;
 
     private int lastExpandedPosition;
+    private ClassDb selectedItem = null;
 
     @AfterViews
     protected void afterView(){
@@ -63,7 +65,8 @@ public class ListClass extends Fragment {
         expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
-                expandableListView.setSelectedChild(i, i1, true);
+                expandableListView.collapseGroup(lastExpandedPosition);
+                selectedItem = listAdapter.getChild(i,i1);
                 return false;
             }
         });
@@ -90,15 +93,20 @@ public class ListClass extends Fragment {
 
     @Click(R.id.fragment_player_list_valider)
     protected void validate(){
-        long id = expandableListView.getSelectedId();
+        if(selectedItem != null){
+            try {
+                ((MainActivity) getActivity()).getPlayer().setClassDb(selectedItem);
+                ((MainActivity) getActivity()).getPlayer().save();
 
-        if(id != -1){
-            FragmentManager fm = getFragmentManager();
-            FragmentTransaction ft = fm.beginTransaction();
-            ListClass_ newFragment = new ListClass_();
-            ft.addToBackStack(null);
-            ft.replace(R.id.fragment_manager, newFragment, newFragment.getClass().getName());
-            ft.commit();
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ListClass_ newFragment = new ListClass_();
+                ft.addToBackStack(null);
+                ft.replace(R.id.fragment_manager, newFragment, newFragment.getClass().getName());
+                ft.commit();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         } else {
             //TODO ERRROR
         }

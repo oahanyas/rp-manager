@@ -21,6 +21,10 @@ public class PlayerDb implements Serializable {
     @DatabaseField(columnName = ID, generatedId = true)
     protected Integer id;
 
+    public static final String JOB = "job";
+    @DatabaseField(foreign = true, columnName = JOB, foreignAutoRefresh = true, maxForeignAutoRefreshLevel = 1)
+    protected ClassDb classDb;
+
     public static final String NAME = "name";
     @DatabaseField(columnName = NAME, canBeNull = false)
     protected String name;
@@ -155,5 +159,13 @@ public class PlayerDb implements Serializable {
 
     public void setBeauty(Integer beauty) {
         this.beauty = beauty;
+    }
+
+    public ClassDb getClassDb() {
+        return classDb;
+    }
+
+    public void setClassDb(ClassDb classDb) {
+        this.classDb = classDb;
     }
 }
