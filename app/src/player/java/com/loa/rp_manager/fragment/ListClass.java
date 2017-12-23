@@ -100,7 +100,7 @@ public class ListClass extends Fragment {
 
                 FragmentManager fm = getFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
-                ListClass_ newFragment = new ListClass_();
+                ListAdvantage_ newFragment = new ListAdvantage_();
                 ft.addToBackStack(null);
                 ft.replace(R.id.fragment_manager, newFragment, newFragment.getClass().getName());
                 ft.commit();

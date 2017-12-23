@@ -143,7 +143,7 @@ public class ExpandableListClassAdapter extends BaseExpandableListAdapter {
                 ClassHasCatComptDb classHasCatComptDb = jobHasCatComptDbs.queryForFirst(comptDbQueryBuilder.prepare());
 
                 // Genere une ligne de competence global
-                LinearLayout competencesView = (LinearLayout) infalInflater.inflate(R.layout.list_class_competences, null);
+                LinearLayout competencesView = (LinearLayout) infalInflater.inflate(R.layout.common_limiteur_and_title, null);
                 competencesView.setId(id);
                 TextView titleCompetences = (TextView) competencesView.findViewById(R.id.list_class_competences_title);
                 titleCompetences.setText(catComptDb.getTitre() + " :");
